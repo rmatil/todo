@@ -5,8 +5,10 @@ require_once("settings.php");
 if ( isset($_POST['taskName']) && isset($_POST['taskDate']) ) {
 	// escape post values
 	$taskName = $db->escape_string($_POST['taskName']);
+	$taskName = htmlspecialchars($taskName);
 	$taskDate = $db->escape_string($_POST['taskDate']);
-
+	$taskDate = htmlspecialchars($taskDate);
+	
 	// validate user inputs
 	if (strlen($taskName) < 1) {
 		header('HTTP/1.1 500 Taskname is empty!');
