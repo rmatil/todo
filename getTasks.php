@@ -4,6 +4,7 @@ require_once("settings.php");
 
 $result = $db->query("SELECT taskId, taskName, taskExpirationDate, completed
 						FROM tasks
+						WHERE completed='0'
 						ORDER BY taskExpirationDate");
 
 if (!$result) {
