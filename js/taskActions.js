@@ -9,7 +9,6 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 	// validate user input
 	var isValid			= true;
 	var dateRegexEn		= /^\d{4}(.|-|\/)\d{2}(.|-|\/)\d{2}$/;
-	var dateRegexGer	= /^\d{2}(.|-|\/)\d{2}(.|-|\/)\d{4}$/;
 
 	// reset background color
 	$('#name').css('background-color', '');
@@ -20,7 +19,7 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 		$('#name').css('background-color', '#f2dede');
 		isValid = false;
 	}
-	if (!taskExpirationDate.match(dateRegexEn) && !taskExpirationDate.match(dateRegexGer)) {
+	if (!taskExpirationDate.match(dateRegexEn)) {
 		$('#date-input').css('background-color', '#f2dede');
 		isValid = false;
 	}
