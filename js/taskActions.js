@@ -1,5 +1,5 @@
 $(document).on("click", "#addTaskSubmit", function (event) {
-
+	// Add a task to the list
 	// prevent default action of form submit
 	event.preventDefault();
 
@@ -10,6 +10,8 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 	var isValid			= true;
 	var dateRegexEn		= /^\d{4}(.|-|\/)\d{2}(.|-|\/)\d{2}$/;
 	var dateRegexGer	= /^\d{2}(.|-|\/)\d{2}(.|-|\/)\d{4}$/;
+
+	// reset background color
 	$('#name').css('background-color', '');
 	$('#date-input').css('background-color', '');
 
@@ -35,6 +37,7 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 			// add success msg
 			$("#resultMsg").html('<p class="bg-success">'+data+'</p>');
 
+			// reset input fields
 			$('#name').val('');
 			$('#date-input').val('');
 
@@ -47,7 +50,24 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 	}
 });
 
-// inserts all tasks in the task table
+$(document).on("click", "#updateTaskSubmit", function (event) {
+	// Update completed tasks
+	// prevent default action of form submit
+	event.preventDefault();
+
+	// update completed tasks
+	var data = $('#updateTasks').serialize();
+
+	$.post('updateTasks.php', data, function(data) {
+		// add success msg
+		$("#resultMsgTasks").html('<p class="bg-success">'+data+'</p>');
+		updateTaskTable();
+	})
+	.fail(function(error) {
+		$('#resultMsgTasks').html('<p class="bg-danger">'+error.statusText+'</p>');
+	});
+});
+
 function getTasks() {
 	// get all tasks from the database
 	$.get('getTasks.php', function(data) {
@@ -71,26 +91,3 @@ function updateTaskTable() {
 	$('#tasks > tbody').empty();
 	getTasks();
 }
-
-$(document).on("click", "#updateTaskSubmit", function (event) {
-
-	// prevent default action of form submit
-	event.preventDefault();
-
-	// update completed tasks
-	var data = $('#updateTasks').serialize();
-
-	$.post('updateTasks.php', data, function(data) {
-		// add success msg
-		$("#resultMsgTasks").html('<p class="bg-success">'+data+'</p>');
-	})
-	.fail(function(error) {
-		$('#resultMsgTasks').html('<p class="bg-danger">'+error.statusText+'</p>');
-	});
-});
-
-
-
-
-
-
