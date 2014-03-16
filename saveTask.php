@@ -17,6 +17,10 @@ if ( isset($_POST['taskName']) && isset($_POST['taskDate']) ) {
 		header('HTTP/1.1 500 Taskdate is empty!');
 	}
 
+	if (preg_match('/^\d{4}(.|-|\/)\d{2}(.|-|\/)\d{2}$/', $taskDate) === FALSE) {
+		header('HTTP/1.1 500 Taskdate must have the format yyyy/mm/dd .');
+	}
+
 	$status = $db->query("INSERT INTO tasks (taskName, taskExpirationDate)
 					VALUES ('$taskName', '$taskDate')");
 
