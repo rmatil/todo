@@ -34,7 +34,7 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 
 		$.post('saveTask.php', data, function(data) {
 			// add success msg
-			$("#resultMsg").html('<p class="bg-success">'+data+'</p>');
+			$("#resultMsg").html('<p class="bg-success">'+data+'</p>').delay(3000).fadeOut(400);
 
 			// reset input fields
 			$('#name').val('');
@@ -44,7 +44,7 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 			updateTaskTable();
 		}).
 		fail(function(error) {
-			$('#resultMsg').html('<p class="bg-danger">'+error.statusText+'</p>');
+			$('#resultMsg').html('<p class="bg-danger">'+error.statusText+'</p>').delay(3000).fadeOut(400);
 		});
 	}
 });
@@ -59,11 +59,11 @@ $(document).on("click", "#updateTaskSubmit", function (event) {
 
 	$.post('updateTasks.php', data, function(data) {
 		// add success msg
-		$("#resultMsgTasks").html('<p class="bg-success">'+data+'</p>');
+		$("#resultMsgTasks").html('<p class="bg-success">'+data+'</p>').delay(3000).fadeOut(400);
 		updateTaskTable();
 	})
 	.fail(function(error) {
-		$('#resultMsgTasks').html('<p class="bg-danger">'+error.statusText+'</p>');
+		$('#resultMsgTasks').html('<p class="bg-danger">'+error.statusText+'</p>').delay(3000).fadeOut(400);
 	});
 });
 
