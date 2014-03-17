@@ -26,7 +26,9 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 
 	// send form data to server
 	if (isValid) {
-
+		// show loading gif
+		$('#loading-gif').show();
+		
 		data = {
 			'taskName': taskName,
 			'taskDate': taskExpirationDate
@@ -46,6 +48,13 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 		fail(function(error) {
 			$('#resultMsg').html('<p class="bg-danger">'+error.statusText+'</p>').delay(3000).fadeOut(400);
 		});
+
+		// reset msg div
+		$('#resultMsg').html('');
+		$('#resultMsg').show();
+
+		// hide loading gif
+		$('#loading-gif').hide();
 	}
 });
 
@@ -54,17 +63,26 @@ $(document).on("click", "#updateTaskSubmit", function (event) {
 	// prevent default action of form submit
 	event.preventDefault();
 
+	// show loading gif
+	$('#loading-gif2').show();
 	// update completed tasks
 	var data = $('#updateTasks').serialize();
 
 	$.post('updateTasks.php', data, function(data) {
 		// add success msg
-		$("#resultMsgTasks").html('<p class="bg-success">'+data+'</p>').delay(3000).fadeOut(400);
+		$('#resultMsgTasks').html('<p class="bg-success">'+data+'</p>').delay(3000).fadeOut(400);
 		updateTaskTable();
 	})
 	.fail(function(error) {
 		$('#resultMsgTasks').html('<p class="bg-danger">'+error.statusText+'</p>').delay(3000).fadeOut(400);
 	});
+
+	// reset resultMsg div
+	$('#resultMsgTasks').html('');
+	$('#resultMsgTasks').show();
+
+	// hide loading gif
+	$('#loading-gif2').hide();
 });
 
 function getTasks() {
