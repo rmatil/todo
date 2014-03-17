@@ -18,8 +18,8 @@ if (isset($_POST['completed'])) {
 		$db->close();
 		exit();
 	}
-
-	echo "Entries successfully updated.";
 }
+
+echo "Entries successfully updated.";
 
 ?>
