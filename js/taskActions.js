@@ -44,17 +44,21 @@ $(document).on("click", "#addTaskSubmit", function (event) {
 
 			// reload all Tasks
 			updateTaskTable();
+
+			// hide loading gif
+			$('#loading-gif').hide();
+
 		}).
 		fail(function(error) {
 			$('#resultMsg').html('<p class="bg-danger">'+error.statusText+'</p>').delay(3000).fadeOut(400);
+
+			// hide loading gif
+			$('#loading-gif').hide();
 		});
 
 		// reset msg div
 		$('#resultMsg').html('');
 		$('#resultMsg').show();
-
-		// hide loading gif
-		$('#loading-gif').hide();
 	}
 });
 
@@ -72,17 +76,21 @@ $(document).on("click", "#updateTaskSubmit", function (event) {
 		// add success msg
 		$('#resultMsgTasks').html('<p class="bg-success">'+data+'</p>').delay(3000).fadeOut(400);
 		updateTaskTable();
+
+		// hide loading gif
+		$('#loading-gif2').hide();
 	})
 	.fail(function(error) {
 		$('#resultMsgTasks').html('<p class="bg-danger">'+error.statusText+'</p>').delay(3000).fadeOut(400);
+
+		// hide loading gif
+		$('#loading-gif2').hide();
 	});
 
 	// reset resultMsg div
 	$('#resultMsgTasks').html('');
 	$('#resultMsgTasks').show();
 
-	// hide loading gif
-	$('#loading-gif2').hide();
 });
 
 function getTasks() {
