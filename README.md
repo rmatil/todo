@@ -1,7 +1,7 @@
 Todo
 =========
 
-Simple todo app with jquery and php
+Simple todo app written in jquery and php
 
 Requirements
 ----
